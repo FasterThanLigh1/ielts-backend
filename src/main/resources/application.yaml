@@ -1,3 +1,27 @@
+server:
+  servlet:
+    context-path: /api/v1
+
 spring:
   application:
     name: ielts-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ieltsdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    # CRITICAL: Forces Hibernate to only validate the schema, never modify it.
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    # Tells Flyway not to freak out if it finds a completely empty database
+    baseline-on-migrate: true
